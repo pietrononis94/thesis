@@ -62,8 +62,14 @@ Mean4classes.columns=['Hour','day','month','weekday','EVEh','noEVEh','noEVnoEh',
 
 
 ######### Preliminary Plots #########
+dfmax=df.loc[:,df.columns.isin(k for k in df.columns if 'Antal' in k)]
+dfmax.max(axis=0).plot()
 
-#plot of differences of mean combination with/without EV Eh
+dfav=df.loc[:,df.columns.isin(k for k in df.columns if 'Average' in k)]
+pd.concat([dfav.max(axis=0),dfav.idxmax()],axis=1)
+
+
+#Plot of differences of mean combination with/without EV Eh
 ax = plt.subplot(221)
 sb.lineplot(dfEl.Hour,dfEl.MeannoEVnoEh,label='no EV no Eh')
 ax = plt.subplot(222)
@@ -73,7 +79,7 @@ sb.lineplot(dfEl.Hour,dfEl.MeannoEVEh,label='no EV With Eh')
 ax = plt.subplot(224)
 sb.lineplot(dfEl.Hour,dfEl.MeanEVEh,label='With EV With Eh')
 
-#seasonal Eh
+#Seasonal Eh
 Mean4classesWinter=Mean4classes[Mean4classes.month==(12 or 1 or 2 or 3)]
 Mean4classesSummer=Mean4classes[Mean4classes.month==(6 or 7 or 8 )]
 plt.figure()
@@ -353,3 +359,7 @@ sb.heatmap(div, xticklabels=divergence.columns,yticklabels=divergence.columns,vm
 
 
 #differenza con i
+
+
+###########
+
