@@ -78,15 +78,19 @@ cat=[k.split('_')[1] for k in cat]
 
 clusters.index=cat
 
-plt.plot(sillhoute_scores)
+
+
 plt.figure()
-b=sb.heatmap(clusters, cbar=False,annot=True, yticklabels=True)#, annot=True, fmt="d")
+#plt.imshow(clusters,cmap='RdYlBu')
+cmap=sb.diverging_palette(0, 256, sep=135,n=256, as_cmap=True)
+b=sb.heatmap(clusters, cbar=False,annot=True, yticklabels=True, cmap=cmap)#, annot=True, fmt="d")
 
 
-#Plot of 2 months
+
+# Plot of 2 months
 # Choose month
-#for m in months
-m=1
+# for m in months
+m=3
 dataset=mo[m]#.dropna(axis=1)
 # K means
 kmeans = KMeans(n_clusters=3)

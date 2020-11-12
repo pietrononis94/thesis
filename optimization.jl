@@ -31,7 +31,6 @@ model_flex = Model(with_optimizer(Gurobi.Optimizer))
 
 @variable(model_flex, 0<=P[h in periods])   #load consumption at time t for category i
 
-
 @objective(model_flex, Min, sum(λ[t]*P[t] for t in periods))
 
 
@@ -40,8 +39,8 @@ model_flex = Model(with_optimizer(Gurobi.Optimizer))
 
 
 ### HF1
+@constraint
 
-m
 ### HF2
 
 

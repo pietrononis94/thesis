@@ -7,10 +7,53 @@
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec975dbe-7446-42a3-aeab-cc32344a42d7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/pietr.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/rGraphicsSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/rSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cities.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Clustering.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DH.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EHCategories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EHCategoriesFix.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EHCategoriesFlex.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EV.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EVEh.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EhEV profiles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HPdaily.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PEV-Profiles-L1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plots.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tecanalysis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/allmeters_hourly.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biffa.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/citiesfinal.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clusterfeature.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clusterfeature1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustermonth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataframe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demand.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/heatopt.jl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/optimization.jl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/optimization.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prices.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prices.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prices.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricesDK1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricesDK2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/privateoptim.jl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quantopian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data kategorier.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data kategorier.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpecialCode.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpecialCode.py" afterDir="false" />
     </list>
@@ -43,7 +86,44 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pietr\Documents\GitHub\thesis" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Clustering" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="thesis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Clustering.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Clustering" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="false" />
+    <option name="ACTIVE_ACTIONS" value=",SHOW_FIELDS" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -78,9 +158,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599576431531" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1600002445473">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1601550547774">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600002445473" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601550547774" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1601550547774">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601550547774" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1601550547774">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601550547774" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1601550547774">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601550547774" />
+    <state x="108" y="20" width="1465" height="879" key="SettingsEditor" timestamp="1604676761936">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="108" y="20" width="1465" height="879" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604676761936" />
+    <state x="882" y="142" width="1218" height="719" key="dock-window-1" timestamp="1604582587970">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1920" y="0" width="1625" height="719" key="dock-window-1/0.0.1920.1040/1920.0.2048.1112@0.0.1920.1040" timestamp="1604582218956" />
+    <state x="882" y="142" width="1218" height="719" key="dock-window-1/0.0.1920.1040/1920.0.2048.1112@1920.0.2048.1112" timestamp="1604582587970" />
+    <state x="623" y="225" key="search.everywhere.popup" timestamp="1604487317420">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604487317420" />
   </component>
 </project>
