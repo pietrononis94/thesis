@@ -21,13 +21,13 @@ for r in Regions
         end
     end
 end
-max=ones(size(Periods)[1],size(Categories)[1],size(Years)[1])*3
+Pmax=ones(size(Periods)[1],size(Categories)[1],size(Years)[1])*3
 
 
 
 
 ## HEATING FLEX1
-FixH1=CSV.read("EVCategoriesFix.csv", delim=",")
+FixH1=CSV.read("EHCategoriesFix.csv", delim=",")
 FlexH1=CSV.read("EHCategoriesFlex.csv", delim=",")
 Ps=FlexH1
 FixH1=dropmissing(Fix)
@@ -35,13 +35,6 @@ FlexH1=dropmissing(Flex)
 
 
 ## HEATING FLEX 2
-
-
-
-
-
-
-
 final=zeros(size(Periods)[1],size(Categories)[1])
 for c in Categories
     model_flexF1 = Model(solver = GurobiSolver())
@@ -54,6 +47,7 @@ for c in Categories
     solve(model_flexF1)
 final[:,c]=getvalue.(Pf)
 end
+
 CSV.write("FlexF1.csv",  DataFrame(final), writeheader=false)
 
 
@@ -62,20 +56,21 @@ CSV.write("FlexF1.csv",  DataFrame(final), writeheader=false)
 
 
 ## ELECTRIC VEHICLES
-Periods=collect(1:24)
+Periods=collect(1:168)
 BEVtypes=collect(1:20)
 PHEVtypes=collect(1:10)
+Ends=collect(1:7)*24
 Availability=CSV.read("Driving_patterns_avail.csv")
 KM_demand=CSV.read("Driving_patterns.csv")
-AvBEVWD=Availability[1:24,2:21]
-KMBEVWD=KM_demand[1:24,2:21]
+AvBEVWD=Availability[1:168,2:21]
+KMBEVWD=KM_demand[1:168,2:21]
 #KMBEVWE=KM_demand[30:54,2:21]
 #KMPHEVWD=KM_demand[63:86,2:11]
 #KMPHEVWE=KM_demand[90:113,2:11]
 #numbBEV=KM_demand[58,1:20]
 #numbPHEV=KM_demand[116,1:10]
 ηcar=6     #Km/KWh
-ChMax=11.1
+ChMax=11.5
 ChPHEVMax=4
 #check not from the paper too old
 ηch=0.95
@@ -91,26 +86,28 @@ M=50000   #BigM
 #final=zeros(size(Periods)[1],size(Categories)[1])
 #for c in Categories
 #BEV
+#for e in BEVtypes
     model_EV = Model(solver = GurobiSolver())
-    @variable(model_EV, 0<=ChEV[t in Periods, e in BEVtypes]<= AvBEVWD[t,e]*ChMax)   #load consumption at time t for type e
-    @variable(model_EV, 0<=SOC[t in Periods, e in BEVtypes]<=360)
+    @variable(model_EV, ChEV[t in Periods, e in BEVtypes]>=0)   #load consumption at time t for type e
+    @variable(model_EV, 0<=SOC[t in Periods, e in BEVtypes]<=100)
 #    @variable(model_EV, Av[t=1:24],Bin)
     @objective(model_EV, Min, sum(λ[y,r,t]*ChEV[t,e] for t in Periods for e in BEVtypes))
-
+#    @constraint(model_EV, [t in Periods, e in BEVtypes], SOC[1,e]==100)
     @constraint(model_EV, [t in Periods, e in BEVtypes], SOC[1,e]==SOC[24,e]+ChEV[24,e])
     @constraint(model_EV, [t=2:24, e in BEVtypes], SOC[t,e]==SOC[t-1,e]+ChEV[t,e]-KMBEVWD[t,e]/ηcar)
-#    @constraint(model_EV, [t in Periods, e in BEVtypes], ChEV[t,e]<= AvBEVWD[t,e]*)
+    @constraint(model_EV, [t in Periods, e in BEVtypes], ChEV[t,e]<= AvBEVWD[t,e]*ChMax)
 #    @constraint(model_EV, [t in Periods], SOC[t]>=exit*100)   #when going out full battery needed
 #    @constraint(model_EV, [t in Periods, e in BEVtypes], KMBEVWD[t,e]/ηcar+AvBEVWD[t,e]*M>=0.1)
 #    @constraint(model_EV, [t in Periods, e in BEVtypes], KMBEVWD[t,e]/ηcar+(AvBEVWD[t,e]-1)*M<=0) #Pmax
     solve(model_EV)
 #final[:,c]=getvalue.(Pf)
 #end
-for e in Periods
-    for t in BEVtypes
+for t in Periods
+    for e in BEVtypes
         print(getvalue.(ChEV[t,e]))
     end
     print('\n')
+    plot()
 end
 print(getvalue.(SOC))
 print(getvalue.(Av))
@@ -118,6 +115,55 @@ print(λ[1,1,1:24])
 
 total=DataFrame([getvalue.(ChEV),getvalue.(SOC),getvalue.(Av),λ[1,1,1:24]])
 CSV.write("EV.csv",  total, writeheader=false)
+
+
+
+
+
+POWER=zeros(size(Periods)[1],size(BEVtypes)[1])
+for e in BEVtypes
+    model_EV = Model(solver = GurobiSolver())
+    @variable(model_EV, ChEV[t in Periods]>=0)   #load consumption at time t for type e
+    @variable(model_EV, 0<=SOC[t in Periods]<=100)
+#    @variable(model_EV, Av[t=1:24],Bin)
+    @objective(model_EV, Min, sum(λ[y,r,t+168]*ChEV[t] for t in Periods))
+    @constraint(model_EV, [t in Ends], SOC[t]==100)
+    @constraint(model_EV, [t in Periods], SOC[1]==SOC[168]+ChEV[168])
+    @constraint(model_EV, [t =2:size(Periods)[1]], SOC[t]==SOC[t-1]+ChEV[t]-KMBEVWD[t,e]/ηcar)
+    @constraint(model_EV, [t in Periods], ChEV[t]<= AvBEVWD[t,e]*ChMax)
+#    @constraint(model_EV, [t in Periods], SOC[t]>=exit*100)   #when going out full battery needed
+#    @constraint(model_EV, [t in Periods, e in BEVtypes], KMBEVWD[t,e]/ηcar+AvBEVWD[t,e]*M>=0.1)
+#    @constraint(model_EV, [t in Periods, e in BEVtypes], KMBEVWD[t,e]/ηcar+(AvBEVWD[t,e]-1)*M<=0) #Pmax
+    solve(model_EV)
+    POWER[:,e]=getvalue.(ChEV[:])
+end
+#final[:,c]=getvalue.(Pf)
+#end
+for e in BEVtypes
+    for t in Periods
+        print(POWER[t,e])
+    end
+    print('\n')
+end
+
+CSV.write("EVWeek.csv",  DataFrame(POWER), writeheader=false)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
